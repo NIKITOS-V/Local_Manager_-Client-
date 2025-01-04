@@ -1,0 +1,79 @@
+<EntryScreen>:
+    canvas:
+        Color:
+            rgba: self.bg_color
+
+        Rectangle:
+            size: self.size
+
+    AnchorLayout:
+        anchor_x: "center"
+        anchor_y: "center"
+
+        BoxLayout:
+            spacing: 10
+            orientation: "vertical"
+            size_hint: None, .25
+            width: self.height * 2
+
+            BoxLayout:
+                Label:
+                    size_hint_x: .3
+                    text: "Ip"
+                    font_size: root.label_text_size
+                    color: root.label_text_color
+
+                IpInput:
+                    id: ip_input
+                    background_active: ""
+                    background_normal: ""
+                    background_color: self.bg_color if self.focus else self.bg_color
+                    foreground_color: self.fg_color
+                    font_size: root.label_text_size
+
+            BoxLayout:
+                Label:
+                    size_hint_x: .3
+                    text: "Порт"
+                    font_size: root.label_text_size
+                    color: root.label_text_color
+
+                PortInput:
+                    id: port_input
+                    background_active: ""
+                    background_normal: ""
+                    background_color: self.bg_color if self.focus else self.bg_color
+                    foreground_color: self.fg_color
+                    font_size: root.label_text_size
+
+            BoxLayout:
+                Label:
+                    size_hint_x: .3
+                    text: "Имя"
+                    font_size: root.label_text_size
+                    color: root.label_text_color
+
+                UserNameInput:
+                    background_active: ""
+                    background_normal: ""
+                    background_color: self.bg_color if self.focus else self.bg_color
+                    foreground_color: self.fg_color
+                    font_size: root.label_text_size
+
+
+            BoxLayout:
+                orientation: "horizontal"
+                spacing: 10
+
+                CheckConnectionButton:
+                    text: "Проверить подключение"
+                    background_active: ""
+                    background_normal: ""
+                    background_color: self.bg_active_color if self.state == "active" else self.bg_normal_color
+                    on_press: root.check_connection(ip_input.text, port_input.text)
+
+                ConnectButton:
+                    text: "Войти"
+                    background_active: ""
+                    background_normal: ""
+                    background_color: self.bg_active_color if self.state == "active" else self.bg_normal_color

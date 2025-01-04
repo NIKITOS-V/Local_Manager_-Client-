@@ -1,0 +1,50 @@
+#:set messages_panel_size_hint_y 0.9
+#:set send_message_panel_size_hint_y 1 - messages_panel_size_hint_y
+
+#:set message_input_size_hint_x 0.9
+
+<ChatScreen>:
+    canvas:
+        Color:
+            rgba: self.bg_color
+
+        Rectangle:
+            size: self.size
+
+    BoxLayout:
+        id: main_box_layout
+        padding: 5
+        spacing: 5
+        orientation: "vertical"
+
+        MessagesPanel:
+            id: messages_panel
+            multiline: True
+            readonly: True
+            background_active: ""
+            background_normal: ""
+            background_color: self.bg_color if self.focus else self.bg_color
+            foreground_color: self.fg_color
+            size_hint: 1, messages_panel_size_hint_y
+
+        BoxLayout:
+            spacing: main_box_layout.spacing
+            orientation: "horizontal"
+            size_hint: 1, send_message_panel_size_hint_y
+
+            MessageInput:
+                id: input_message
+                multiline: True
+                background_active: ""
+                background_normal: ""
+                background_color: self.bg_color if self.focus else self.bg_color
+                foreground_color: self.fg_color
+                size_hint: message_input_size_hint_x, 1
+
+            SendMessageButton:
+                size_hint: None, 1
+                width: self.height
+                background_active: ""
+                background_normal: ""
+                background_color: self.bg_active_color if self.state == "active" else self.bg_normal_color
+                on_press: root.send_message(input_message.text)
