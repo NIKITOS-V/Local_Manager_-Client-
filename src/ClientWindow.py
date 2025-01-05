@@ -4,14 +4,17 @@ from src.ScreenController import ScreenController
 
 
 class ClientWindow(App):
-    def __init__(self, connect_driver, **kwargs):
+    def __init__(self, java_connect_driver, **kwargs):
         super().__init__(**kwargs)
 
-        self.connect_driver = connect_driver
+        self.__java_connect_driver = java_connect_driver
 
     def build(self):
-        screen_controller = ScreenController(self.connect_driver)
+        screen_controller = ScreenController(self.__java_connect_driver)
 
         screen_controller.open_entry_screen()
 
         return screen_controller
+
+    def on_stop(self):
+        self.__java_connect_driver.closeConnection()

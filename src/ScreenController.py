@@ -1,9 +1,9 @@
 from enum import Enum
 
-from kivy.uix.screenmanager import ScreenManager, NoTransition
+from kivy.uix.screenmanager import ScreenManager
 
-from src.Screens.ChatScreen import ChatScreen
-from src.Screens.EntryScreen import EntryScreen
+from src.Screens.ChatScreen.ChatScreen import ChatScreen
+from src.Screens.EntryScreen.EntryScreen import EntryScreen
 
 
 class Screens(str, Enum):
@@ -12,24 +12,19 @@ class Screens(str, Enum):
 
 
 class ScreenController(ScreenManager):
-    def __init__(self, connect_driver, **kwargs):
+    def __init__(self, java_connect_driver, **kwargs):
         super().__init__(**kwargs)
 
         self.add_widget(
-            EntryScreen(
-                Screens.entry_screen,
-                connect_driver
-            )
+            EntryScreen(Screens.entry_screen, java_connect_driver)
         )
 
         self.add_widget(
             ChatScreen(
                 Screens.chat_screen,
-                connect_driver
+                java_connect_driver
             )
         )
-
-        self.transition = NoTransition()
 
     def open_chat_screen(self):
         self.current = Screens.chat_screen
