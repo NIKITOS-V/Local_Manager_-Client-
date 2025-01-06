@@ -52,12 +52,12 @@ class EntryScreen(Screen):
     button_normal_color = ListProperty([1, 1, 1, 1])
     button_active_color = ListProperty([1, 1, 1, 1])
 
-    def __init__(self, screen_name: str, connect_driver, **kwargs):
+    def __init__(self, screen_name: str, java_connect_driver, **kwargs):
         super().__init__(**kwargs)
 
         self.esBinder = ESBinder(
             self,
-            connect_driver
+            java_connect_driver
         )
 
         self.name = screen_name
@@ -70,7 +70,7 @@ class EntryScreen(Screen):
         self.button_normal_color = Palette.get_color(40, 40, 40, 255)
         self.button_active_color = CommonSettings.button_active_color
 
-    def __lock_inputs(self, ):
+    def __lock_inputs(self):
         self.ids.ip_input.readonly = True
         self.ids.port_input.readonly = True
         self.ids.user_name_input.readonly = True

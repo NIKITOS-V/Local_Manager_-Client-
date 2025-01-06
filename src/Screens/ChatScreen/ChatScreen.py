@@ -68,12 +68,12 @@ class ChatScreen(Screen):
     button_normal_color = ListProperty([1, 1, 1, 1])
     button_active_color = ListProperty([1, 1, 1, 1])
 
-    def __init__(self, screen_name: str, connect_driver: JClass, **kwargs):
+    def __init__(self, screen_name: str, java_connect_driver: JClass, **kwargs):
         super().__init__(**kwargs)
 
         self.name = screen_name
 
-        self.__csBinder = CSBinder(self, connect_driver)
+        self.__csBinder = CSBinder(self, java_connect_driver)
 
         self.bg_color = CommonSettings.background_color
 
@@ -94,10 +94,11 @@ class ChatScreen(Screen):
 
     @mainthread
     def send_message(self, message_input, *args) -> None:
-        self.__csBinder.send_message(message_input.text)
-        message_input.text = ""
+        if message_input.text != "" and message_input.text.count(" ") != len(message_input.text):
+            self.__csBinder.send_message(message_input.text)
+            message_input.text = ""
 
-    def disconnect(self):
+    def disconnect(self) -> None:
         self.__csBinder.disconnect()
 
     def on_pre_enter(self, *args):
