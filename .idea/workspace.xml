@@ -5,16 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="91e751c8-b950-4abc-ad1c-952f4a00d139" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/LMClient/java/Logger/LogWriter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/LMClient/java/Logger/Logger.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Resources/ChatScreenView.kv" beforeDir="false" afterPath="$PROJECT_DIR$/Resources/ChatScreenView.kv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Resources/LMClient.jar" beforeDir="false" afterPath="$PROJECT_DIR$/Resources/LMClient.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LMClient/java/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/LMClient/java/Client.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ScreenController.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/ScreenController.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Screens/ChatScreen/CSBinder.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/Screens/ChatScreen/CSBinder.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Screens/ChatScreen/ChatScreen.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/Screens/ChatScreen/ChatScreen.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Executable/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Logs/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -83,12 +76,13 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "git-widget-placeholder": "main",
-    "last_opened_file_path": "D:/Programs/Python_java/Local_Messenger/LMClient/main.py",
-    "settings.editor.selected.configurable": "preferences.pluginManager"
+    "last_opened_file_path": "D:/Programs/Python_java/Local_Messenger/LMClient/Logs",
+    "settings.editor.selected.configurable": "preferences.externalTools"
   }
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\Programs\Python_java\Local_Messenger\LMClient\Logs" />
       <recent name="D:\Programs\Python_java\Local_Messenger\LMClient\src\Screens" />
       <recent name="D:\Programs\Python_java\Local_Messenger\LMClient\src\Resources" />
       <recent name="D:\Programs\Python_java\Local_Messenger\LMClient\src\Formating" />
@@ -222,7 +216,15 @@
       <option name="project" value="LOCAL" />
       <updated>1736106415430</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Готов логгер, добавлена кнопка выхода из чата, настроена анимация переключения окон">
+      <option name="closed" value="true" />
+      <created>1736170459463</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1736170459463</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -233,6 +235,7 @@
     <MESSAGE value="Переименовал главную ветку" />
     <MESSAGE value="технический коммит" />
     <MESSAGE value="Написал README.md файл, переименовал корень java модуля с src на java." />
-    <option name="LAST_COMMIT_MESSAGE" value="Написал README.md файл, переименовал корень java модуля с src на java." />
+    <MESSAGE value="Готов логгер, добавлена кнопка выхода из чата, настроена анимация переключения окон" />
+    <option name="LAST_COMMIT_MESSAGE" value="Готов логгер, добавлена кнопка выхода из чата, настроена анимация переключения окон" />
   </component>
 </project>
