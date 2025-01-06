@@ -1,5 +1,6 @@
-#:set messages_panel_size_hint_y 0.9
-#:set send_message_panel_size_hint_y 1 - messages_panel_size_hint_y
+#:set messages_panel_size_hint_y 0.85
+#:set top_panel_size_hint_y 0.05
+#:set send_message_panel_size_hint_y 1 - messages_panel_size_hint_y - top_panel_size_hint_y
 
 #:set message_input_size_hint_x 0.9
 
@@ -16,6 +17,22 @@
         padding: 5
         spacing: 5
         orientation: "vertical"
+
+        BoxLayout:
+            orientation: "horizontal"
+            padding: 2
+            size_hint: 1, top_panel_size_hint_y
+
+            Button:
+                size_hint: 0.2, 1
+                background_active: ""
+                background_normal: ""
+                text: "Выйти"
+                font_size: self.height * 0.5
+                background_color: root.button_active_color if self.state == "active" else root.button_normal_color
+                on_press: root.disconnect()
+
+            Widget:
 
         MessagesPanel:
             id: messages_panel
@@ -42,12 +59,12 @@
                 background_color: root.message_input_color
                 foreground_color: root.text_color
                 size_hint: message_input_size_hint_x, 1
-                on_size: root.text_size = round(self.height * 0.3)
+                on_size: root.text_size = round(self.height * 0.25)
 
             SendMessageButton:
                 size_hint: None, 1
                 width: self.height
                 background_active: ""
                 background_normal: ""
-                background_color: self.bg_active_color if self.state == "active" else self.bg_normal_color
-                on_press: root.send_message(input_message.text)
+                background_color: root.button_active_color if self.state == "active" else root.button_normal_color
+                on_press: root.send_message(input_message)

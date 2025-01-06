@@ -1,8 +1,10 @@
 import Interfaces.ClientInterface;
 import Interfaces.RecipientConnectionResult;
 import Interfaces.RecipientMessages;
+import Logger.Logger;
 import RequestTypes.ClientRequestType;
 import RequestTypes.ServerRequestType;
+import Logger.LogWriter;
 
 import java.io.*;
 import java.net.Socket;
@@ -16,14 +18,41 @@ public class Client implements ClientInterface {
     private BufferedReader bufferedReader;
     private BufferedWriter bufferedWriter;
 
+    private final LogWriter logWriter;
+
+    public Client(){
+        this.logWriter = new Logger("Logs");
+
+        this.logWriter.addLog(
+                String.format(
+                        "The %s class has been launched.",
+                        this.getClass().getSimpleName()
+                )
+        );
+    }
+
     @Override
     public void setCSBinder(RecipientMessages csBinder) {
         this.csBinder = csBinder;
+
+        this.logWriter.addLog(
+                String.format(
+                        "The connecting class of the login window and the %s class has been received.",
+                        this.getClass().getSimpleName()
+                )
+        );
     }
 
     @Override
     public void setESBinder(RecipientConnectionResult esBinder) {
         this.esBinder = esBinder;
+
+        this.logWriter.addLog(
+                String.format(
+                        "The connecting class of the chat window and the %s class has been received.",
+                        this.getClass().getSimpleName()
+                )
+        );
     }
 
     @Override
@@ -51,11 +80,17 @@ public class Client implements ClientInterface {
 
                 this.bufferedWriter.flush();
 
+                this.logWriter.addLog("The user was connected.");
+
                 startListeningThread();
 
                 this.esBinder.accept_connection_result(true);
 
+                this.logWriter.addLog("The chat window was open.");
+
             } catch (IOException e) {
+                this.logWriter.addLog(e.toString());
+
                 closeConnection();
 
                 this.esBinder.accept_connection_result(false);
@@ -79,8 +114,12 @@ public class Client implements ClientInterface {
 
                 this.bufferedWriter.flush();
 
+                this.logWriter.addLog("The message was sent.");
+
             } catch (IOException e) {
-               closeConnection();
+                this.logWriter.addLog(e.toString());
+
+                closeConnection();
             }
         }
     }
@@ -109,8 +148,12 @@ public class Client implements ClientInterface {
                 addTextToWriter(ClientRequestType.getChatHistory);
                 this.bufferedWriter.flush();
 
+                this.logWriter.addLog("A request has been made for the chat history.");
+
             } catch (IOException e) {
-               closeConnection();
+                this.logWriter.addLog(e.toString());
+
+                closeConnection();
             }
         }
     }
@@ -129,9 +172,12 @@ public class Client implements ClientInterface {
 
                 this.esBinder.accept_check_connection_result(true);
 
-            } catch (IOException e) {
+                this.logWriter.addLog("Connection verification was successful.");
 
+            } catch (IOException e) {
                 this.esBinder.accept_check_connection_result(false);
+
+                this.logWriter.addLog(e.toString());
             }
         }).start();
     }
@@ -143,14 +189,14 @@ public class Client implements ClientInterface {
                     String requestType = this.bufferedReader.readLine();
 
                     if (!requestType.equals(String.valueOf(ServerRequestType.acceptMessage))) {
-                         throw new IOException("Uncorrected request from server");
+                         throw new IOException("Uncorrected request from server.");
                     }
 
                     StringBuilder message = new StringBuilder();
 
                     String userName = this.bufferedReader.readLine();
 
-                    Integer numberLines = Integer.parseInt(this.bufferedReader.readLine());
+                    int numberLines = Integer.parseInt(this.bufferedReader.readLine());
 
                     for (int i = 0; i < numberLines; i++){
                         message.append(this.bufferedReader.readLine()).append("\n");
@@ -158,38 +204,45 @@ public class Client implements ClientInterface {
 
                     this.csBinder.accept_message(userName, message.toString());
 
+                    this.logWriter.addLog("The message was received.");
+
                 } catch (IOException e) {
+                    this.logWriter.addLog(e.toString());
+
                     closeConnection();
                 }
             }
         }).start();
+
+        this.logWriter.addLog("The message acceptance thread has been started.");
     }
 
     public void closeConnection(){
         try {
-            System.out.println("sterllll");
-
             this.csBinder.log_out_of_chat();
 
-            if (this.socket != null){
+            this.logWriter.addLog("The user returned to the login window.");
 
+            if (this.socket != null){
                 this.socket.close();
+
+                this.logWriter.addLog("The socket was closed.");
             }
 
             if (this.bufferedWriter != null) {
-
                 this.bufferedWriter.close();
+
+                this.logWriter.addLog("The bufferedWriter was closed.");
             }
 
             if (this.bufferedReader != null) {
-
                 this.bufferedReader.close();
+
+                this.logWriter.addLog("The bufferedReader was closed.");
             }
 
-            System.out.println("succj");
-
         } catch (IOException e) {
-            e.printStackTrace();
+            this.logWriter.addLog(e.toString());
         }
     }
 }

@@ -1,9 +1,14 @@
 from enum import Enum
 
-from kivy.uix.screenmanager import ScreenManager
+from kivy.uix.screenmanager import ScreenManager, SlideTransition
 
 from src.Screens.ChatScreen.ChatScreen import ChatScreen
 from src.Screens.EntryScreen.EntryScreen import EntryScreen
+
+
+class Direction(str, Enum):
+    right = "right"
+    left = "left"
 
 
 class Screens(str, Enum):
@@ -26,8 +31,12 @@ class ScreenController(ScreenManager):
             )
         )
 
+        self.transition = SlideTransition(duration=0.5)
+
     def open_chat_screen(self):
+        self.transition.direction = Direction.left
         self.current = Screens.chat_screen
 
     def open_entry_screen(self):
+        self.transition.direction = Direction.right
         self.current = Screens.entry_screen

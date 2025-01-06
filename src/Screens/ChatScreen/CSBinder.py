@@ -24,3 +24,6 @@ class CSBinder:
     @JOverride()
     def log_out_of_chat(self) -> None:
         self.__screen.log_out_of_chat()
+
+    def disconnect(self):
+        self.__java_connect_driver.closeConnection()

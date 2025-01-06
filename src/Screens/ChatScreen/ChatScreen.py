@@ -40,14 +40,8 @@ class MessagesPanel(TextInput):
 
 
 class SendMessageButton(Button, RelativeLayout):
-    bg_normal_color = ListProperty([1, 1, 1, 1])
-    bg_active_color = ListProperty([1, 1, 1, 1])
-
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
-
-        self.bg_normal_color = CommonSettings.button_normal_color
-        self.bg_active_color = CommonSettings.button_active_color
 
         self.__image = Image(
             source="Resources\\send_button_icon.png",
@@ -71,6 +65,9 @@ class ChatScreen(Screen):
 
     message_input_color = ListProperty([1, 1, 1, 1])
 
+    button_normal_color = ListProperty([1, 1, 1, 1])
+    button_active_color = ListProperty([1, 1, 1, 1])
+
     def __init__(self, screen_name: str, connect_driver: JClass, **kwargs):
         super().__init__(**kwargs)
 
@@ -79,8 +76,12 @@ class ChatScreen(Screen):
         self.__csBinder = CSBinder(self, connect_driver)
 
         self.bg_color = CommonSettings.background_color
+
         self.text_color = CommonSettings.text_color
         self.message_input_color = CommonSettings.text_input_bg_color
+
+        self.button_normal_color = CommonSettings.button_normal_color
+        self.button_active_color = CommonSettings.button_active_color
 
     @mainthread
     def log_out_of_chat(self) -> None:
@@ -92,8 +93,12 @@ class ChatScreen(Screen):
         self.ids.messages_panel.add_text(user_name, message)
 
     @mainthread
-    def send_message(self, message: str, *args) -> None:
-        self.__csBinder.send_message(message)
+    def send_message(self, message_input, *args) -> None:
+        self.__csBinder.send_message(message_input.text)
+        message_input.text = ""
+
+    def disconnect(self):
+        self.__csBinder.disconnect()
 
     def on_pre_enter(self, *args):
         self.__csBinder.get_chat_history()
