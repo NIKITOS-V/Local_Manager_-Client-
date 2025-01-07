@@ -4,14 +4,13 @@ import Interfaces.LogWriter;
 
 import java.io.File;
 import java.io.FileWriter;
-import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 
 public class Logger implements LogWriter {
-    private static final String FILE_EXTENSION = "txt";
-    private static final String PATTERN = "yyyy.MM.dd";
+    public static final String FILE_EXTENSION = "txt";
+    public static final String PATTERN = "yyyy.MM.dd";
 
     private final String logsDir;
 
