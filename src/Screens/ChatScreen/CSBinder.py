@@ -1,6 +1,6 @@
 from jpype import JImplements, JClass, java, JOverride
 
-from src.Screens.Interfaces.RecipientMessages import RecipientMessages
+from src.Interfaces.RecipientMessages import RecipientMessages
 
 
 @JImplements("Interfaces.RecipientMessages")

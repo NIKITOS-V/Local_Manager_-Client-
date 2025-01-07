@@ -1,5 +1,7 @@
 package Logger;
 
+import Interfaces.LogWriter;
+
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -7,7 +9,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 
-public class Logger implements LogWriter{
+public class Logger implements LogWriter {
     private static final String FILE_EXTENSION = "txt";
     private static final String PATTERN = "yyyy.MM.dd";
 
@@ -15,24 +17,30 @@ public class Logger implements LogWriter{
 
     public Logger(String logsDir){
         this.logsDir = logsDir;
+
+        addLog("", false, "");
     }
 
     @Override
     public void addLog(String text) {
+        addLog(text, true, "\n");
+    }
+
+    private void addLog(String text, boolean append, String end){
         try {
             File file = new File(createFilePath());
 
             file.createNewFile();
 
-            FileWriter fileWriter = new FileWriter(file, true);
+            FileWriter fileWriter = new FileWriter(file, append);
 
             fileWriter.write(text);
-            fileWriter.append("\n");
+            fileWriter.append(end);
             fileWriter.flush();
 
             fileWriter.close();
 
-        } catch (IOException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }

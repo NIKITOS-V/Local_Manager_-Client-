@@ -1,5 +1,6 @@
 from enum import Enum
 
+from jpype import JClass
 from kivy.uix.screenmanager import ScreenManager, SlideTransition
 
 from src.Screens.ChatScreen.ChatScreen import ChatScreen
@@ -17,7 +18,7 @@ class Screens(str, Enum):
 
 
 class ScreenController(ScreenManager):
-    def __init__(self, java_connect_driver, **kwargs):
+    def __init__(self, java_connect_driver: JClass, **kwargs):
         super().__init__(**kwargs)
 
         self.add_widget(

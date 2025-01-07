@@ -1,3 +1,5 @@
+from typing import Final
+
 from kivy.clock import mainthread
 from kivy.lang import Builder
 from kivy.properties import ListProperty, NumericProperty
@@ -12,7 +14,7 @@ from zope.interface import implementer
 
 from src.Formating.Palette import Palette
 from src.Screens.CommonSettings import CommonSettings
-from src.Screens.Interfaces.RecipientMessages import RecipientMessages
+from src.Interfaces.RecipientMessages import RecipientMessages
 from src.Screens.ChatScreen.CSBinder import CSBinder
 
 
@@ -73,7 +75,7 @@ class ChatScreen(Screen):
 
         self.name = screen_name
 
-        self.__csBinder = CSBinder(self, java_connect_driver)
+        self.__csBinder: Final[CSBinder] = CSBinder(self, java_connect_driver)
 
         self.bg_color = CommonSettings.background_color
 

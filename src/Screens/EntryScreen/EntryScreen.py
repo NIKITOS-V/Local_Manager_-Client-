@@ -1,3 +1,5 @@
+from typing import Final
+
 from kivy.clock import mainthread
 from kivy.lang import Builder
 from kivy.properties import ListProperty, NumericProperty, StringProperty
@@ -7,7 +9,7 @@ from kivy.uix.popup import Popup
 from kivy.uix.relativelayout import RelativeLayout
 from kivy.uix.screenmanager import Screen
 
-from jpype import java
+from jpype import JClass
 
 from src.Formating.Palette import Palette
 from src.Formating.Errors import IpError, UserNameError
@@ -26,7 +28,7 @@ class ARLayout(RelativeLayout):
             self.apply_ratio(child)
         super(ARLayout, self).do_layout()
 
-    def apply_ratio(self, child):
+    def apply_ratio(self, child) -> None:
         child.size_hint = None, None
         child.pos_hint = {"center_x": .5, "center_y": .5}
 
@@ -52,10 +54,10 @@ class EntryScreen(Screen):
     button_normal_color = ListProperty([1, 1, 1, 1])
     button_active_color = ListProperty([1, 1, 1, 1])
 
-    def __init__(self, screen_name: str, java_connect_driver, **kwargs):
+    def __init__(self, screen_name: str, java_connect_driver: JClass, **kwargs):
         super().__init__(**kwargs)
 
-        self.esBinder = ESBinder(
+        self.__esBinder: Final[ESBinder] = ESBinder(
             self,
             java_connect_driver
         )
@@ -90,7 +92,7 @@ class EntryScreen(Screen):
 
         self.notifier_label_text = ""
 
-    def check_connection(self, ip: str, port_str: str, *args):
+    def check_connection(self, ip: str, port_str: str, *args) -> None:
         try:
             if not self.__check_input(ip):
                 raise IpError(message="Некорректный ip")
@@ -99,7 +101,7 @@ class EntryScreen(Screen):
 
             self.__lock_inputs()
 
-            self.esBinder.check_connection(ip, port)
+            self.__esBinder.check_connection(ip, port)
 
         except IpError as ie:
             self.__show_mini_window(
@@ -120,7 +122,7 @@ class EntryScreen(Screen):
             )
 
     @mainthread
-    def accept_check_connection_result(self, result: java.lang.Boolean):
+    def accept_check_connection_result(self, result: bool) -> None:
         self.__show_mini_window(
             "Результат подключения",
             "Успешно" if result else "Не удалось"
@@ -129,7 +131,7 @@ class EntryScreen(Screen):
         self.__unlock_inputs()
 
     @mainthread
-    def connect_to_server(self, ip: str, port_str: str, user_name: str, *args):
+    def connect_to_server(self, ip: str, port_str: str, user_name: str, *args) -> None:
         try:
             if not self.__check_input(ip):
                 raise IpError(message="Некорректный ip")
@@ -141,7 +143,7 @@ class EntryScreen(Screen):
 
             self.__lock_inputs()
 
-            self.esBinder.connect(ip, port, user_name)
+            self.__esBinder.connect(ip, port, user_name)
 
         except UserNameError as une:
             self.__show_mini_window(
@@ -162,7 +164,7 @@ class EntryScreen(Screen):
             )
 
     @mainthread
-    def accept_connection_result(self, result: java.lang.Boolean):
+    def accept_connection_result(self, result: bool) -> None:
         if result:
             self.manager.open_chat_screen()
 
@@ -174,7 +176,7 @@ class EntryScreen(Screen):
 
         self.__unlock_inputs()
 
-    def __show_mini_window(self, title: str, text: str):
+    def __show_mini_window(self, title: str, text: str) -> None:
         layout = AnchorLayout()
 
         layout.add_widget(

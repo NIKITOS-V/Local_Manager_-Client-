@@ -4,10 +4,24 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="91e751c8-b950-4abc-ad1c-952f4a00d139" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Executable/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Logs/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" />
+    <list default="true" id="91e751c8-b950-4abc-ad1c-952f4a00d139" name="Changes" comment="Переименовал параметры и убрал возможность отправлять пустые сообщения">
+      <change afterPath="$PROJECT_DIR$/Resources/Client.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Resources/LMClient.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ClientWindow.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/ClientWindow.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/LMClient/.idea/artifacts/LMClient_jar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/LMClient/.idea/artifacts/Client_jar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/LMClient/java/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/LMClient/java/Client.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/LMClient/java/Interfaces/ClientInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/LMClient/java/Interfaces/ClientInterface.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/LMClient/java/Logger/LogWriter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/LMClient/java/Interfaces/LogWriter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/LMClient/java/Logger/Logger.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/LMClient/java/Logger/Logger.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ScreenController.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/ScreenController.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Screens/ChatScreen/CSBinder.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/Screens/ChatScreen/CSBinder.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Screens/ChatScreen/ChatScreen.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/Screens/ChatScreen/ChatScreen.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Screens/EntryScreen/ESBuilder.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/Screens/EntryScreen/ESBuilder.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Screens/EntryScreen/EntryScreen.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/Screens/EntryScreen/EntryScreen.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Screens/Interfaces/RecipientConnectionResult.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/Interfaces/RecipientConnectionResult.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Screens/Interfaces/RecipientMessages.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/Interfaces/RecipientMessages.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -65,21 +79,21 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_ADD_EXTERNAL_FILES": "true",
-    "Python.ChatScreen.executor": "Run",
-    "Python.ClientWindow.executor": "Run",
-    "Python.EntryScreen.executor": "Run",
-    "Python.main.executor": "Run",
-    "Python.main_2.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "main",
-    "last_opened_file_path": "D:/Programs/Python_java/Local_Messenger/LMClient/Logs",
-    "settings.editor.selected.configurable": "preferences.externalTools"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;Python.ChatScreen.executor&quot;: &quot;Run&quot;,
+    &quot;Python.ClientWindow.executor&quot;: &quot;Run&quot;,
+    &quot;Python.EntryScreen.executor&quot;: &quot;Run&quot;,
+    &quot;Python.main.executor&quot;: &quot;Run&quot;,
+    &quot;Python.main_2.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/Programs/Python_java/Local_Messenger/LMClient/Logs&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.externalTools&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="D:\Programs\Python_java\Local_Messenger\LMClient\Logs" />
@@ -224,7 +238,23 @@
       <option name="project" value="LOCAL" />
       <updated>1736170459463</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="Добавил папки для хранения логов и исполняемого файла">
+      <option name="closed" value="true" />
+      <created>1736175300155</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1736175300155</updated>
+    </task>
+    <task id="LOCAL-00009" summary="Переименовал параметры и убрал возможность отправлять пустые сообщения">
+      <option name="closed" value="true" />
+      <created>1736176408145</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1736176408145</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -236,6 +266,8 @@
     <MESSAGE value="технический коммит" />
     <MESSAGE value="Написал README.md файл, переименовал корень java модуля с src на java." />
     <MESSAGE value="Готов логгер, добавлена кнопка выхода из чата, настроена анимация переключения окон" />
-    <option name="LAST_COMMIT_MESSAGE" value="Готов логгер, добавлена кнопка выхода из чата, настроена анимация переключения окон" />
+    <MESSAGE value="Добавил папки для хранения логов и исполняемого файла" />
+    <MESSAGE value="Переименовал параметры и убрал возможность отправлять пустые сообщения" />
+    <option name="LAST_COMMIT_MESSAGE" value="Переименовал параметры и убрал возможность отправлять пустые сообщения" />
   </component>
 </project>

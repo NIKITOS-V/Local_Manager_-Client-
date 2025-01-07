@@ -1,7 +1,7 @@
 package Interfaces;
 
 public interface ClientInterface {
-    void connect(String ip, Integer port, String userName);
+    void connect(String ip, int port, String userName);
 
     void sendMessage(String message);
 
@@ -11,5 +11,5 @@ public interface ClientInterface {
 
     void getChatHistory();
 
-    void checkConnection(String ip, Integer port);
+    void checkConnection(String ip, int port);
 }

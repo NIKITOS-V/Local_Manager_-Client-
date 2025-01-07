@@ -4,7 +4,7 @@ import Interfaces.RecipientMessages;
 import Logger.Logger;
 import RequestTypes.ClientRequestType;
 import RequestTypes.ServerRequestType;
-import Logger.LogWriter;
+import Interfaces.LogWriter;
 
 import java.io.*;
 import java.net.Socket;
@@ -56,7 +56,7 @@ public class Client implements ClientInterface {
     }
 
     @Override
-    public void connect(String ip, Integer port, String userName) {
+    public void connect(String ip, int port, String userName) {
         new Thread(() -> {
             try{
                 this.socket = new Socket(ip, port);
@@ -88,7 +88,7 @@ public class Client implements ClientInterface {
 
                 this.logWriter.addLog("The chat window was open.");
 
-            } catch (IOException e) {
+            } catch (Exception e) {
                 this.logWriter.addLog(e.toString());
 
                 closeConnection();
@@ -116,7 +116,7 @@ public class Client implements ClientInterface {
 
                 this.logWriter.addLog("The message was sent.");
 
-            } catch (IOException e) {
+            } catch (Exception e) {
                 this.logWriter.addLog(e.toString());
 
                 closeConnection();
@@ -127,10 +127,6 @@ public class Client implements ClientInterface {
     private void addTextToWriter(String text) throws IOException {
         this.bufferedWriter.write(text);
         this.bufferedWriter.newLine();
-    }
-
-    private void addTextToWriter(Integer number) throws IOException {
-        addTextToWriter(String.valueOf(number));
     }
 
     private void addTextToWriter(int number) throws IOException {
@@ -150,7 +146,7 @@ public class Client implements ClientInterface {
 
                 this.logWriter.addLog("A request has been made for the chat history.");
 
-            } catch (IOException e) {
+            } catch (Exception e) {
                 this.logWriter.addLog(e.toString());
 
                 closeConnection();
@@ -159,7 +155,7 @@ public class Client implements ClientInterface {
     }
 
     @Override
-    public void checkConnection(String ip, Integer port) {
+    public void checkConnection(String ip, int port) {
         new Thread(() -> {
             try (Socket socket = new Socket(ip, port);
                  BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()))
@@ -174,7 +170,7 @@ public class Client implements ClientInterface {
 
                 this.logWriter.addLog("Connection verification was successful.");
 
-            } catch (IOException e) {
+            } catch (Exception e) {
                 this.esBinder.accept_check_connection_result(false);
 
                 this.logWriter.addLog(e.toString());
@@ -206,7 +202,7 @@ public class Client implements ClientInterface {
 
                     this.logWriter.addLog("The message was received.");
 
-                } catch (IOException e) {
+                } catch (Exception e) {
                     this.logWriter.addLog(e.toString());
 
                     closeConnection();
@@ -219,29 +215,28 @@ public class Client implements ClientInterface {
 
     public void closeConnection(){
         try {
-            this.csBinder.log_out_of_chat();
+            if (this.socket != null && !this.socket.isClosed() ){
+                this.csBinder.log_out_of_chat();
 
-            this.logWriter.addLog("The user returned to the login window.");
+                this.logWriter.addLog("The user returned to the login window.");
 
-            if (this.socket != null){
                 this.socket.close();
 
                 this.logWriter.addLog("The socket was closed.");
+
+                if (this.bufferedWriter != null) {
+                    this.bufferedWriter.close();
+
+                    this.logWriter.addLog("The bufferedWriter was closed.");
+                }
+
+                if (this.bufferedReader != null) {
+                    this.bufferedReader.close();
+
+                    this.logWriter.addLog("The bufferedReader was closed.");
+                }
             }
-
-            if (this.bufferedWriter != null) {
-                this.bufferedWriter.close();
-
-                this.logWriter.addLog("The bufferedWriter was closed.");
-            }
-
-            if (this.bufferedReader != null) {
-                this.bufferedReader.close();
-
-                this.logWriter.addLog("The bufferedReader was closed.");
-            }
-
-        } catch (IOException e) {
+        } catch (Exception e) {
             this.logWriter.addLog(e.toString());
         }
     }
