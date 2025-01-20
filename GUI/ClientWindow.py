@@ -37,7 +37,7 @@ class ClientWindow(App):
         self.__binder = Binder(
             entry_screen,
             chat_screen,
-            JClass("Client")()
+            JClass("ru.NIKITOS_V.Client")()
         )
 
         screen_controller = ScreenController(

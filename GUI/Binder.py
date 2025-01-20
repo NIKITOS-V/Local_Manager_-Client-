@@ -1,5 +1,3 @@
-from typing import Final
-
 from jpype import JClass, JOverride, java, JImplements
 from zope.interface import implementer
 
@@ -7,7 +5,7 @@ from GUI.Interfaces.Binders import CSBinder, EBinder
 from GUI.Interfaces.Recipients import RecipientConnectionResult, RecipientMessages
 
 
-@JImplements("Interfaces.PyRecipient")
+@JImplements("ru.NIKITOS_V.PyInterfaces.Recipient")
 @implementer(CSBinder, EBinder)
 class Binder:
     def __init__(

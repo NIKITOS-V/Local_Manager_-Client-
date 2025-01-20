@@ -1,16 +1,18 @@
-import Interfaces.ClientInterface;
-import Interfaces.PyRecipient;
-import Logger.Logger;
-import RequestTypes.ClientRequestType;
-import RequestTypes.ServerRequestType;
-import Interfaces.LogWriter;
+package ru.NIKITOS_V;
+
+import ru.NIKITOS_V.Interfaces.ClientInterface;
+import ru.NIKITOS_V.Interfaces.LogWriter;
+import ru.NIKITOS_V.Logger.Logger;
+import ru.NIKITOS_V.PyInterfaces.Recipient;
+import ru.NIKITOS_V.RequestTypes.ClientRequestType;
+import ru.NIKITOS_V.RequestTypes.ServerRequestType;
 
 import java.io.*;
 import java.net.Socket;
 import java.nio.charset.StandardCharsets;
 
 public class Client implements ClientInterface {
-    private PyRecipient binder;
+    private Recipient binder;
 
     private Socket socket;
     private BufferedReader bufferedReader;
@@ -29,12 +31,12 @@ public class Client implements ClientInterface {
         );
     }
 
-    public void setBinder(PyRecipient binder){
+    public void setBinder(Recipient binder){
         this.binder = binder;
     }
 
     @Override
-    public void setCSBinder(PyRecipient csBinder) {
+    public void setCSBinder(Recipient csBinder) {
         this.binder = csBinder;
 
         this.logWriter.addLog(

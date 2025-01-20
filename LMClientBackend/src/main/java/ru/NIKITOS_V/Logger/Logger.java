@@ -1,6 +1,6 @@
-package Logger;
+package ru.NIKITOS_V.Logger;
 
-import Interfaces.LogWriter;
+import ru.NIKITOS_V.Interfaces.LogWriter;
 
 import java.io.File;
 import java.io.FileWriter;
