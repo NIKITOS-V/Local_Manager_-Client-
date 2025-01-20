@@ -1,0 +1,75 @@
+<EntryScreen>:
+    ARLayout:
+        AnchorLayout:
+            anchor_x: "center"
+            anchor_y: "center"
+
+            BoxLayout:
+                size_hint: 1, 0.25
+                spacing: 10
+                orientation: "vertical"
+                on_size: root.text_size = self.height * 0.08
+
+                BoxLayout:
+                    Label:
+                        size_hint_x: .3
+                        text: "Ip"
+                        font_size: root.text_size
+                        color: root.text_color
+
+                    CTextInput:
+                        id: ip_input
+                        font_size: root.text_size
+                        multiline: False
+                        background_color: root.text_input_bg_color
+                        foreground_color: root.text_color
+
+                BoxLayout:
+                    Label:
+                        size_hint_x: .3
+                        text: "Порт"
+                        font_size: root.text_size
+                        color: root.text_color
+
+                    CTextInput:
+                        id: port_input
+                        font_size: root.text_size
+                        multiline: False
+                        background_color: root.text_input_bg_color
+                        foreground_color: root.text_color
+
+                BoxLayout:
+                    Label:
+                        size_hint_x: .3
+                        text: "Имя"
+                        font_size: root.text_size
+                        color: root.text_color
+
+                    CTextInput:
+                        id: user_name_input
+                        font_size: root.text_size
+                        multiline: False
+                        background_color: root.text_input_bg_color
+                        foreground_color: root.text_color
+
+                BoxLayout:
+                    orientation: "horizontal"
+                    spacing: 10
+
+                    CButton:
+                        id: check_connection_button
+                        text: "Проверить"
+                        font_size: root.text_size
+                        on_release: root.check_connection(ip_input.text, port_input.text)
+
+                    CButton:
+                        id: entry_button
+                        text: "Войти"
+                        font_size: root.text_size
+                        on_release: root.connect_to_server(ip_input.text, port_input.text, user_name_input.text)
+
+                Label:
+                    text: root.notifier_label_text
+                    font_size: root.text_size
+                    color: root.text_color
+                    size_hint: 1, 0.7

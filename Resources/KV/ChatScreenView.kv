@@ -1,0 +1,56 @@
+#:set messages_panel_size_hint_y 0.85
+#:set top_panel_size_hint_y 0.05
+#:set send_message_panel_size_hint_y 1 - messages_panel_size_hint_y - top_panel_size_hint_y
+
+#:set message_input_size_hint_x 0.9
+
+<ChatScreen>:
+    BoxLayout:
+        id: main_box_layout
+        padding: 5
+        spacing: 5
+        orientation: "vertical"
+
+        BoxLayout:
+            orientation: "horizontal"
+            padding: 2
+            size_hint: 1, top_panel_size_hint_y
+
+            CButton:
+                size_hint: 0.2, 1
+                text: "Выйти"
+                font_size: self.height * 0.5
+                on_release: root.disconnect()
+
+            Widget:
+
+        MessagesPanel:
+            id: messages_panel
+            font_size: root.text_size
+            multiline: True
+            readonly: True
+            background_color: self.bg_color
+            foreground_color: self.fg_color
+            size_hint: 1, messages_panel_size_hint_y
+
+        BoxLayout:
+            spacing: main_box_layout.spacing
+            orientation: "horizontal"
+            size_hint: 1, send_message_panel_size_hint_y
+
+            CTextInput:
+                id: input_message
+                font_size: root.text_size
+                multiline: True
+                background_color: root.message_input_color
+                foreground_color: root.text_color
+                size_hint: message_input_size_hint_x, 1
+                on_size: root.text_size = round(self.height * 0.25)
+
+            IconButton:
+                size_hint: None, 1
+                width: self.height
+                bg_normal: .6, .6, .6, 1.
+                bg_down: 1., 1., 1., 1.
+                source: "Resources/Icons/send_button_icon.png"
+                on_release: root.send_message(input_message)

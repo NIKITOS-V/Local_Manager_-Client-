@@ -6,17 +6,15 @@ from jpype import startJVM, shutdownJVM, JClass
 if __name__ == "__main__":
     Window.maximize()
 
-    resources_path: str = "Resources/Client.jar"
+    resources_path: str = "Resources/LMClient.jar"
     jvm_path: str = "Resources/jre1.8.0_431/bin/server/jvm.dll"
 
     startJVM(jvm_path, '-ea', f"-Djava.class.path={resources_path}")
 
-    from src.ClientWindow import ClientWindow
+    from GUI.ClientWindow import ClientWindow
 
     try:
-        ClientWindow(
-            JClass("Client")()
-        ).run()
+        ClientWindow().run()
 
     except Exception as e:
         print(e)

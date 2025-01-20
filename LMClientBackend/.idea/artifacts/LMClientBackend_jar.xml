@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="LMClientBackend:jar">
+    <output-path>$PROJECT_DIR$/../Resources</output-path>
+    <root id="archive" name="LMClient.jar">
+      <element id="module-output" name="LMClient" />
+    </root>
+  </artifact>
+</component>
